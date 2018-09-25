@@ -1,0 +1,6 @@
+AJAX (JavaScript Asíncrono y XML) es un término nuevo para describir dos capacidades de los navegadores que han estado presentes por años, pero que habían sido ignoradas por muchos desarrolladores Web, hasta hace poco que surgieron aplicaciones como Gmail, Google suggest y Google Maps.
+
+Las dos capacidades en cuestión son:
+
+La posibilidad de hacer peticiones al servidor sin tener que volver a cargar la página.
+La posibilidad de analizar y trabajar con documentos XML.

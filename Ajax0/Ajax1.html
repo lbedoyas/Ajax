@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax 1</title>
+</head>
+<body>
+    <button onclick="ejecutarAjax()">Hazme click</button>
+    <div id="info">
+
+    </div>
+    <script>
+        /*La lista completa de valores para la propiedad readyState es:
+        0 (no inicializada)
+        1 (leyendo)
+        2 (leido)
+        3 (interactiva o procesada)
+        4 (completo)*/
+
+        //creamos la funcion
+        function ejecutarAjax()
+        {
+            //XMLHttpRequest -> es la clase que tiene los metodos y propiedades.
+            var ajaxRequest = new XMLHttpRequest();
+            //onreadystatechange -> esto se encarga de procesar la respuesta por parte del servidor.
+            ajaxRequest.onreadystatechange = function(){
+                //el status 200 es que la peticion fue exitosa en los navegadores
+                if(ajaxRequest.readyState == 4 && ajaxRequest.status == 200){
+                    document.getElementById("info").innerHTML = ajaxRequest.responseText;
+                }
+            }
+            //Los parametros que recibe el metodo open son:
+            //el metodo, API o el servidor, boolean asi va hacer asyncrono.
+            ajaxRequest.open('GET', 'documento.txt', true);
+            ajaxRequest.send();
+        }
+    </script>
+</body>
+</html>

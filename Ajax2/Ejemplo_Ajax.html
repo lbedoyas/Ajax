@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+</style>
+<body>
+
+<h2>Ejemplo de XMLHttpRequest Object</h2>
+
+<button type="button" onclick="loadDoc()">Traer mi coleccion</button>
+<br><br>
+<table id="demo"></table>
+<!--
+  getElementsByTagName
+  Por medio de este método lo que se selecciona es una lista de nodos cuyo 
+  elemento es el especificado como parámetro; a cada uno de los nodos se le asigna un índice, 
+  de acuerdo al orden en el que aparecen en el marcado del documento-->
+
+<script>
+function loadDoc() {
+  //Se declara la clase
+  var xhttp = new XMLHttpRequest();
+  //procesamiento
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xhttp.open("GET", "cd_catalog.xml", true);
+  xhttp.send();
+}
+function myFunction(xml) {
+  var i;
+  //Se declara la variable pero para que se reciba en formato XML
+  var xmlDoc = xml.responseXML;
+  var table="<tr><th>Artist</th><th>Title</th></tr>";
+  var x = xmlDoc.getElementsByTagName("CD");
+  for (i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    //childNodes, devuelve la coleccion de hijos de los nodos
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+
+</body>
+</html>
